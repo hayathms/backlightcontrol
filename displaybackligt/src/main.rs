@@ -6,9 +6,9 @@ use std::io::BufWriter;
 
 
 fn main() {
-    let max_brightness_filepath = "/sys/class/leds/asus::kbd_backlight/max_brightness";
-    let current_brighness_filepath = "/sys/class/leds/asus::kbd_backlight/brightness";
-    let set_brightess_filepath = "/sys/class/leds/asus::kbd_backlight/brightness";
+    let max_brightness_filepath = "/sys/class/backlight/intel_backlight/max_brightness";
+    let current_brighness_filepath = "/sys/class/backlight/intel_backlight/actual_brightness";
+    let set_brightess_filepath = "/sys/class/backlight/intel_backlight/brightness";
 
 
     let max_brightness: i16 = get_from_file(max_brightness_filepath);
@@ -50,7 +50,7 @@ fn get_from_file(filepath: &str) -> i16 {
 fn increment(change_value: i16, filepath: &str) {
 
     println!("came to increment here {}", change_value);
-    if (0 > change_value) || (change_value > 3) {
+    if (0 > change_value) || (change_value > 600) {
         panic!("Value out of range" );
     }
 
@@ -66,7 +66,7 @@ fn decrement(change_value: i16, filepath: &str) {
 
 
     println!("came to increment here {}", change_value);
-    if (0 > change_value) || (change_value > 3) {
+    if (0 > change_value) || (change_value > 600) {
         panic!("Value out of range" );
     }
 
